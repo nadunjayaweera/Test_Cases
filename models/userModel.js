@@ -1,11 +1,18 @@
-const userModel = require("../models/userModel");
+// models/userModel.js
+const mongoose = require("mongoose");
 
-exports.getAllUsers = (req, res) => {
-  // Logic to fetch all users
-  res.send("Get all users");
-};
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+});
 
-exports.createUser = (req, res) => {
-  // Logic to create a new user
-  res.send("Create a user");
-};
+const User = mongoose.model("User", userSchema);
+
+module.exports = User;
